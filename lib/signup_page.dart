@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_trialroom/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_app_trialroom/profile_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({ Key? key }) : super(key: key);
@@ -9,8 +11,34 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  Future<User?> creatAccount(String email, String password, String confirmPassword) async{
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      user = userCredential.user;
+      if (user != Null && password == confirmPassword){
+        print("Signup successful");
+        return user;
+      }
+      else{
+        print("Signup unsuccessful");
+        return user;
+      }
+
+      
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = new TextEditingController();
+    TextEditingController passwordController = new TextEditingController();
+    TextEditingController confirmPasswordController = new TextEditingController();
+
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       
@@ -44,6 +72,7 @@ class _SignUpState extends State<SignUp> {
             
         
                   TextField(
+                    controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Color.fromARGB(255, 0, 0, 0),
                     cursorHeight: 25,
@@ -68,6 +97,7 @@ class _SignUpState extends State<SignUp> {
                 
              
                   TextField(
+                    controller: passwordController,
                     obscureText: true,
                     cursorColor: Color.fromARGB(255, 0, 0, 0),
                     cursorHeight: 25,
@@ -91,6 +121,7 @@ class _SignUpState extends State<SignUp> {
                 
              
                   TextField(
+                    controller: confirmPasswordController,
                     obscureText: true,
                     cursorColor: Color.fromARGB(255, 0, 0, 0),
                     cursorHeight: 25,
@@ -148,7 +179,13 @@ class _SignUpState extends State<SignUp> {
                       height: 50,
                       child: ElevatedButton(
                         
-                        onPressed: () {}, 
+                        onPressed: () {
+                          creatAccount(emailController.text, passwordController.text, confirmPasswordController.text);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: ((context) => const ProfileScreen())),
+                          );        
+                          }, 
                         child: const Text(
                           "    Signup    ",
                           style: TextStyle(color: Color.fromARGB(255, 13, 14, 14) ,fontSize: 19, fontWeight: FontWeight.bold,),),
