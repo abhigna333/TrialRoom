@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_trialroom/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_app_trialroom/profile_screen.dart';
+import 'package:flutter_app_trialroom/screens/profile_screen.dart';
+
+import '../methods.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({ Key? key }) : super(key: key);
@@ -11,27 +13,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  Future<User?> creatAccount(String email, String password, String confirmPassword) async{
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    User? user;
-    try {
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      user = userCredential.user;
-      if (user != Null && password == confirmPassword){
-        print("Signup successful");
-        return user;
-      }
-      else{
-        print("Signup unsuccessful");
-        return user;
-      }
-
-      
-    } catch (e) {
-      print(e);
-      return null;
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {

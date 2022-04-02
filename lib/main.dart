@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_trialroom/profile_screen.dart';
-import 'package:flutter_app_trialroom/signup_page.dart';
+import 'package:flutter_app_trialroom/screens/profile_screen.dart';
+import 'package:flutter_app_trialroom/screens/signup_page.dart';
+
+import 'methods.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -53,19 +55,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  static Future<User?> loginUsingEmailPassword({ required String email, required String password}) async{
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
-    try{
-      UserCredential  usercredential = await auth.signInWithEmailAndPassword(email: email, password: password);
-      user = usercredential.user; 
-    } on FirebaseAuthException catch(e){
-      if (e.code == "user-not-found"){
-        print("No user found for that email");
-      }
-    }
-    return user;
-  }
+ 
   
 
   @override
