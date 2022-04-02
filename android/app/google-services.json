@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "239187167868",
+    "project_id": "trial-room-a7750",
+    "storage_bucket": "trial-room-a7750.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239187167868:android:c6cc2dd8c33739b006d7f9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app_trialroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239187167868-kjkfq6913o0phjvt9a1tnmuukfb51n2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCLzki2BsA9X4t2i-92okARweqVbLLnvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239187167868-kjkfq6913o0phjvt9a1tnmuukfb51n2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
